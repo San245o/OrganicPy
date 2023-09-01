@@ -130,5 +130,5 @@ class Compound:
         else:
             print(f"The IUPAC name of your given compound is: {R1 + R2 + 'Ketone'}")
         
-#c = input("enter a compound: ").upper()
+#c = input("enter a compound: ")
 ele = Compound("C2H5-(CO)-C2H5")
