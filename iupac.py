@@ -80,18 +80,18 @@ class Compound:
 
     def Alcohols(self,root_word):
         self.root_word = root_word
-        print("alcohol sikeu")
+        print("alcohols")
         print(f'The IUPAC name of your given compound is: {self.cyc + self.root_word + self.secondary_prefix + "ol"}')
 
     
     def Aldehydes(self,root_word):
-        print("aldehydesu naisu")
+        print("aldehydes")
         self.root_word = root_word
         print(f'The IUPAC name of your given compound is: {self.cyc + self.root_word + self.secondary_prefix + "-al"}')
 
 
     def Ketones(self):
-        print("oof ketnosu")
+        print("ketones")
         pass 
     
 c = input("enter a compound: ")
