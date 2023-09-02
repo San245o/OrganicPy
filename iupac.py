@@ -11,12 +11,13 @@ class Compound:
             print("Methane")
         else:
             root_word = ["Meth", "Eth", "Prop", "But", "Pent", "Hex", "Hept", "Oct", "Non", "Dec"]
-            functionals = ['-(OH)','-(CO)-','-(CHO)']
+            functionals = ['-(OH)','-(CO)-','-(CHO)','-(COOH)','-(NH2)']
             halogens = ['Cl','Br','F','I']
             secondary_prefix = ''
             cyc = ''
             FuncTrue = False
             halTrue = False
+            AmTrue = False
 
             for i in self.compound:
                 if i == "H":
@@ -35,12 +36,14 @@ class Compound:
                     hal_place = self.compound.find(i)
                     self.halogen_grp = i
                     halTrue = True
-            
+
             c_atoms  = int(self.compound[carb_place+1:hyd_place])
             if FuncTrue: 
                 hyd_atoms = int(self.compound[hyd_place+1:func_place]) + 1
             elif halTrue:
                 hyd_atoms = int(self.compound[hyd_place+1:hal_place])
+            elif AmTrue:
+                hyd_atoms = int(self.compound[hyd_place+1:func_place]) + 1
             else:
                 hyd_atoms = int(self.compound[hyd_place+1:])
 
@@ -59,7 +62,8 @@ class Compound:
             alc_ = ['-(OH)']
             ald_ = ['-(CHO)']
             ket_ = ['-(CO)-']
-
+            am_ = ['-(NH2)']
+            cbxylics = ['-(COOH)']
             if FuncTrue:
                 if self.functional_group in alc_:
                     self.Alcohols(root_word[c_atoms - 1])
@@ -67,6 +71,11 @@ class Compound:
                     self.Aldehydes(root_word[c_atoms])
                 if self.functional_group in ket_:
                     self.Ketones()
+                if self.functional_group in am_:
+                    self.Amines(root_word[c_atoms - 1])
+                if self.functional_group in cbxylics:
+                    self.Carboxylics(root_word[c_atoms])
+                
             elif halTrue:
                 self.Halogen(root_word[c_atoms - 1])
             else:
@@ -130,5 +139,13 @@ class Compound:
         else:
             print(f"The IUPAC name of your given compound is: {R1 + R2 + 'Ketone'}")
         
-#c = input("enter a compound: ")
-ele = Compound("C2H5-(CO)-C2H5")
+    def Carboxylics(self,root_word):
+            self.root_word = root_word
+            print(f'The IUPAC name of your given compound is: {self.cyc + self.root_word + self.secondary_prefix + "-oic acid"}')
+            pass
+    def Amines(self,root_word):
+            self.root_word = root_word
+            print(f'The IUPAC name of your given compound is: {self.cyc + self.root_word + self.secondary_prefix + " amine"}')
+            
+c = input("enter a compound: ")
+ele = Compound(c)
