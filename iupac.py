@@ -29,8 +29,11 @@ class Compound:
                 if i in self.compound:
                     func_place = self.compound.find(i)
                     self.functional_group = i
-                    FuncTrue = True
-
+                    if i == "-(NH2)":
+                        AmTrue = True
+                    else: 
+                        FuncTrue = True
+                        
             for i in halogens:
                 if i in self.compound:
                     hal_place = self.compound.find(i)
@@ -38,12 +41,13 @@ class Compound:
                     halTrue = True
 
             c_atoms  = int(self.compound[carb_place+1:hyd_place])
+            
             if FuncTrue: 
                 hyd_atoms = int(self.compound[hyd_place+1:func_place]) + 1
             elif halTrue:
                 hyd_atoms = int(self.compound[hyd_place+1:hal_place])
             elif AmTrue:
-                hyd_atoms = int(self.compound[hyd_place+1:func_place]) + 1
+                hyd_atoms = int(self.compound[hyd_place+1:func_place]) 
             else:
                 hyd_atoms = int(self.compound[hyd_place+1:])
 
@@ -71,20 +75,19 @@ class Compound:
                     self.Aldehydes(root_word[c_atoms])
                 if self.functional_group in ket_:
                     self.Ketones()
-                if self.functional_group in am_:
-                    self.Amines(root_word[c_atoms - 1])
                 if self.functional_group in cbxylics:
                     self.Carboxylics(root_word[c_atoms])
                 
             elif halTrue:
                 self.Halogen(root_word[c_atoms - 1])
+            elif AmTrue:
+                    self.Amines(root_word[c_atoms - 1])
             else:
                 self.Hydrocarbons(root_word[c_atoms - 1])
 
     def Hydrocarbons(self,root_word):
         self.root_word = root_word
         print(f'The IUPAC name of your given compound is: {self.cyc + self.root_word + self.secondary_prefix}')
-
 
     def Halogen(self, root_word):
         self.root_word = root_word
@@ -97,11 +100,9 @@ class Compound:
         self.root_word = root_word
         print(f'The IUPAC name of your given compound is: {self.cyc + self.root_word + self.secondary_prefix + "ol"}')
 
-    
     def Aldehydes(self,root_word):
         self.root_word = root_word
         print(f'The IUPAC name of your given compound is: {self.cyc + self.root_word + self.secondary_prefix + "-al"}')
-
 
     def Ketones(self):
         print("KETONES")
