@@ -33,7 +33,7 @@ class Compound:
                         AmTrue = True
                     else: 
                         FuncTrue = True
-                        
+
             for i in halogens:
                 if i in self.compound:
                     hal_place = self.compound.find(i)
@@ -89,6 +89,7 @@ class Compound:
         self.root_word = root_word
         print(f'The IUPAC name of your given compound is: {self.cyc + self.root_word + self.secondary_prefix}')
 
+
     def Halogen(self, root_word):
         self.root_word = root_word
         print("Halogen detected\n")
@@ -100,9 +101,11 @@ class Compound:
         self.root_word = root_word
         print(f'The IUPAC name of your given compound is: {self.cyc + self.root_word + self.secondary_prefix + "ol"}')
 
+    
     def Aldehydes(self,root_word):
         self.root_word = root_word
         print(f'The IUPAC name of your given compound is: {self.cyc + self.root_word + self.secondary_prefix + "-al"}')
+
 
     def Ketones(self):
         print("KETONES")
