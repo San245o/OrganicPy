@@ -52,7 +52,10 @@ class Compound:
                 hyd_atoms = int(self.compound[hyd_place+1:])
 
             if hyd_atoms == 2*c_atoms + 2:
-                self.secondary_prefix += 'ane'
+                if FuncTrue:
+                    self.secondary_prefix += 'an'
+                else:
+                    self.secondary_prefix += 'ane'
             elif hyd_atoms == 2*c_atoms:
                 self.secondary_prefix += 'ene'
             elif hyd_atoms == 2*c_atoms - 2:
@@ -146,7 +149,6 @@ class Compound:
     def Carboxylics(self,root_word):
             self.root_word = root_word
             print(f'The IUPAC name of your given compound is: {self.cyc + self.root_word + self.secondary_prefix + "-oic acid"}')
-            pass
     def Amines(self,root_word):
             self.root_word = root_word
             print(f'The IUPAC name of your given compound is: {self.cyc + self.root_word + self.secondary_prefix + " amine"}')
